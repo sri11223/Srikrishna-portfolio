@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, Download } from "lucide-react";
+import resumePDF from "@/assets/Srikrishna_Nutalapati.pdf";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,11 +30,15 @@ export const Navigation = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    setIsMobileMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false);
   };
 
-  const navItems = [
+  const handleResumeClick = () => {
+    // Only open resume in new tab for viewing - no automatic download
+    window.open(resumePDF, "_blank");
+    setIsMobileMenuOpen(false);
+  };  const navItems = [
     { label: "Home", id: "home" },
     { label: "About", id: "about" },
     { label: "Projects", id: "projects" },
@@ -79,6 +84,15 @@ export const Navigation = () => {
                   {item.label}
                 </button>
               ))}
+              
+              {/* Resume Button */}
+              <button
+                onClick={handleResumeClick}
+                className="px-4 py-2 bg-secondary text-secondary-foreground font-bold rounded-lg hover:bg-secondary/90 transition-all shadow-[2px_2px_0px_0px_hsl(var(--accent))] hover:shadow-[1px_1px_0px_0px_hsl(var(--accent))] hover:translate-x-[1px] hover:translate-y-[1px] flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Resume
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -111,34 +125,20 @@ export const Navigation = () => {
                     {item.label}
                   </button>
                 ))}
+                
+                {/* Mobile Resume Button */}
+                <button
+                  onClick={handleResumeClick}
+                  className="text-left px-4 py-3 bg-secondary text-secondary-foreground font-bold rounded-lg hover:bg-secondary/90 transition-all flex items-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  View Resume
+                </button>
               </div>
             </div>
           )}
         </div>
       </nav>
-
-      {/* Side Navigation Dots (Desktop only) */}
-      <div className="hidden xl:block fixed right-8 top-1/2 -translate-y-1/2 z-50">
-        <div className="flex flex-col gap-4">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="group relative"
-              title={item.label}
-            >
-              <div className={`w-3 h-3 rounded-full transition-all ${
-                activeSection === item.id
-                  ? "bg-primary scale-125"
-                  : "bg-muted hover:bg-primary/50 hover:scale-110"
-              }`} />
-              <span className="absolute right-6 top-1/2 -translate-y-1/2 px-3 py-1 bg-primary text-primary-foreground text-sm font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                {item.label}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
     </>
   );
 };

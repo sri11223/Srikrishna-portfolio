@@ -1,21 +1,27 @@
 import { Github, Linkedin, Mail, Download, Sparkles, Code2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/portfolio-profile.png";
+import resumePDF from "@/assets/Srikrishna_Nutalapati.pdf";
 
 export const Hero = () => {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleResumeClick = () => {
+    // Only open resume in new tab for viewing - no automatic download
+    window.open(resumePDF, "_blank");
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Animated Mesh Background */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
+      {/* Static Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20" />
       
       {/* Floating Geometric Shapes */}
-      <div className="absolute top-20 left-10 w-32 h-32 border-4 border-primary/20 rotate-45 animate-float-slow" />
-      <div className="absolute bottom-20 right-20 w-40 h-40 border-4 border-secondary/20 rounded-full animate-rotate-slow" />
-      <div className="absolute top-1/2 right-10 w-24 h-24 bg-accent/10 backdrop-blur-sm animate-float-slow" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-20 left-10 w-32 h-32 border-4 border-primary/20 rotate-45" />
+      <div className="absolute bottom-20 right-20 w-40 h-40 border-4 border-secondary/20 rounded-full" />
+      <div className="absolute top-1/2 right-10 w-24 h-24 bg-accent/10 backdrop-blur-sm" />
 
       <div className="container relative z-10 px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -77,7 +83,7 @@ export const Hero = () => {
                 size="lg" 
                 variant="outline"
                 className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground font-bold px-8 shadow-[4px_4px_0px_0px_hsl(var(--secondary))] hover:shadow-[2px_2px_0px_0px_hsl(var(--secondary))] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-                onClick={() => window.open("/resume.pdf", "_blank")}
+                onClick={handleResumeClick}
               >
                 <Download className="mr-2 h-5 w-5" />
                 Resume
