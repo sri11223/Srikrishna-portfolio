@@ -47,16 +47,17 @@ export const About = () => {
               </p>
             </div>
 
-            {/* Tech Stack with Unique Layout */}
-            <div className="bg-gradient-to-br from-muted to-muted/50 p-8 rounded-2xl border-2 border-border">
-              <h3 className="text-2xl font-bold mb-6">Tech Arsenal</h3>
+            {/* Tech Stack with Enhanced Design */}
+            <div className="bg-gradient-to-br from-muted to-muted/50 p-8 rounded-2xl border-2 border-border hover:border-primary/30 transition-all">
+              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Tech Arsenal</h3>
               <div className="flex flex-wrap gap-3">
                 {techStack.map((tech, index) => (
                   <Badge 
                     key={index} 
-                    className="px-4 py-2 text-sm font-semibold bg-background border-2 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all cursor-pointer hover:scale-105"
+                    className="group relative px-4 py-3 text-sm font-semibold text-foreground bg-card/70 border-2 border-border hover:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-primary/30 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.03}s` }}
                   >
-                    {tech}
+                    <span className="relative z-10 group-hover:text-primary transition-colors duration-300 group-hover:font-bold">{tech}</span>
                   </Badge>
                 ))}
               </div>

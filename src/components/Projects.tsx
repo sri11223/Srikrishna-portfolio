@@ -1,8 +1,10 @@
 import { ExternalLink, Github, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 
 export const Projects = () => {
+  const navigate = useNavigate();
   const featuredProjects = [
     {
       title: "AI Startup Success Platform",
@@ -134,30 +136,48 @@ export const Projects = () => {
           ))}
         </div>
 
-        {/* More Projects - Compact Grid */}
+        {/* More Projects - Call to Action */}
         <div className="animate-fade-in">
-          <h3 className="text-3xl font-black mb-8">More Projects</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {moreProjects.map((project, index) => (
-              <a
-                key={index}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-card p-6 rounded-xl border-2 border-border hover:border-primary transition-all hover:scale-105"
+          <div className="text-center bg-gradient-to-br from-card to-card/50 p-12 rounded-3xl border-2 border-border hover:border-primary/30 transition-all">
+            <h3 className="text-4xl font-black mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Explore More Projects
+            </h3>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Discover {moreProjects.length}+ additional projects including mobile apps, AI tools, DevOps automation, and full-stack applications
+            </p>
+            
+            {/* Quick preview of project types */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {["Full Stack", "AI/ML", "Mobile Apps", "DevOps", "Web APIs", "React Native"].map((type, index) => (
+                <Badge 
+                  key={index}
+                  className="px-4 py-2 bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors"
+                >
+                  {type}
+                </Badge>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                onClick={() => navigate("/projects")}
               >
-                <h4 className="font-bold mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="text-xs px-2 py-1 bg-muted rounded-md font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </a>
-            ))}
+                <ExternalLink className="w-5 h-5 mr-2" />
+                View All Projects
+              </Button>
+              
+              <Button 
+                size="lg"
+                variant="outline"
+                className="border-primary/50 hover:bg-primary/10 hover:border-primary font-bold px-8 py-4 rounded-xl"
+                onClick={() => window.open("https://github.com/sri11223", "_blank")}
+              >
+                <Github className="w-5 h-5 mr-2" />
+                GitHub Profile
+              </Button>
+            </div>
           </div>
         </div>
       </div>
