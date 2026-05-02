@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
-import { Home, User, Briefcase, Code, Trophy, Mail, ChevronUp } from 'lucide-react';
+import { Home, User, Briefcase, Code, Trophy, Mail, ChevronUp, BarChart3, FileText, ShieldCheck } from 'lucide-react';
 
 interface SidebarProps {
   className?: string;
 }
 
+const sections = [
+  { id: 'home', label: 'Home', icon: Home },
+  { id: 'snapshot', label: 'Profile', icon: FileText },
+  { id: 'about', label: 'About', icon: User },
+  { id: 'proof', label: 'Impact', icon: BarChart3 },
+  { id: 'case-studies', label: 'Deep Dives', icon: ShieldCheck },
+  { id: 'experience', label: 'Experience', icon: Briefcase },
+  { id: 'projects', label: 'Projects', icon: Code },
+  { id: 'skills', label: 'Skills', icon: Trophy },
+  { id: 'contact', label: 'Contact', icon: Mail },
+];
+
 export const ScrollingSidebar = ({ className = '' }: SidebarProps) => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-
-  const sections = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About', icon: User },
-    { id: 'projects', label: 'Projects', icon: Briefcase },
-    { id: 'skills', label: 'Skills', icon: Code },
-    { id: 'experience', label: 'Experience', icon: Trophy },
-    { id: 'contact', label: 'Contact', icon: Mail },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Zap, Download } from "lucide-react";
-import resumePDF from "@/assets/Srikrishna_Nutalapati.pdf";
+import { profileLinks } from "@/data/profile";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,7 +12,7 @@ export const Navigation = () => {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ["home", "about", "projects", "skills", "experience", "contact"];
+      const sections = ["home", "snapshot", "about", "proof", "case-studies", "experience", "projects", "skills", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -35,15 +35,18 @@ export const Navigation = () => {
   };
 
   const handleResumeClick = () => {
-    // Only open resume in new tab for viewing - no automatic download
-    window.open(resumePDF, "_blank");
+    window.open(profileLinks.resume, "_blank", "noopener,noreferrer");
     setIsMobileMenuOpen(false);
-  };  const navItems = [
+  };
+
+  const navItems = [
     { label: "Home", id: "home" },
+    { label: "Profile", id: "snapshot" },
     { label: "About", id: "about" },
-    { label: "Projects", id: "projects" },
-    { label: "Skills", id: "skills" },
+    { label: "Impact", id: "proof" },
+    { label: "Deep Dives", id: "case-studies" },
     { label: "Experience", id: "experience" },
+    { label: "Projects", id: "projects" },
     { label: "Contact", id: "contact" }
   ];
 
@@ -75,7 +78,7 @@ export const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-4 py-2 rounded-lg font-bold transition-all ${
+                  className={`px-3 py-2 rounded-lg text-sm font-bold transition-all ${
                     activeSection === item.id
                       ? "bg-primary text-primary-foreground"
                       : "hover:bg-primary/10 text-foreground hover:text-primary"
@@ -88,7 +91,7 @@ export const Navigation = () => {
               {/* Resume Button */}
               <button
                 onClick={handleResumeClick}
-                className="px-4 py-2 bg-secondary text-secondary-foreground font-bold rounded-lg hover:bg-secondary/90 transition-all shadow-[2px_2px_0px_0px_hsl(var(--accent))] hover:shadow-[1px_1px_0px_0px_hsl(var(--accent))] hover:translate-x-[1px] hover:translate-y-[1px] flex items-center gap-2"
+                className="px-3 py-2 bg-secondary text-secondary-foreground text-sm font-bold rounded-lg hover:bg-secondary/90 transition-all shadow-[2px_2px_0px_0px_hsl(var(--accent))] hover:shadow-[1px_1px_0px_0px_hsl(var(--accent))] hover:translate-x-[1px] hover:translate-y-[1px] flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Resume
