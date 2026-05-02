@@ -21,6 +21,12 @@ export const RecruiterSnapshot = () => {
     "Freelance full-stack delivery",
   ];
 
+  const recruiterHooks = [
+    "I build systems that are measurable, demoable, and production-minded.",
+    "I can move from product UI to backend architecture to AI workflows without losing depth.",
+    "I don't just ship features, I ship proof: live apps, metrics, docs, and working demos.",
+  ];
+
   return (
     <section id="snapshot" className="py-20 px-4 bg-muted/10 border-y border-border/50">
       <div className="container max-w-7xl mx-auto">
@@ -37,6 +43,13 @@ export const RecruiterSnapshot = () => {
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
               Current Techolution intern shipping Deploy Genie, with prior production experience at Outbox Labs and MetLife. Strongest signal: SENTINEL, Orchestrate, latency reduction work, RAG systems, and agentic deployment automation.
             </p>
+
+            <div className="mb-8 p-5 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-lg border-2 border-primary/30">
+              <div className="text-sm font-black uppercase tracking-wide text-primary mb-2">Why Hire Me</div>
+              <p className="text-xl md:text-2xl font-black leading-snug">
+                I turn complex ideas into <span className="text-primary">working systems</span> with <span className="text-secondary">real metrics</span>, <span className="text-accent">live demos</span>, and clean engineering underneath.
+              </p>
+            </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {quickFacts.map((fact) => (
@@ -71,6 +84,15 @@ export const RecruiterSnapshot = () => {
                 <Linkedin className="w-4 h-4 mr-2" />
                 LinkedIn
               </Button>
+            </div>
+
+            <div className="mt-8 grid gap-3">
+              {recruiterHooks.map((hook) => (
+                <div key={hook} className="flex items-start gap-3 p-3 bg-background/60 rounded-lg border border-border">
+                  <Trophy className="h-4 w-4 text-secondary mt-1 flex-shrink-0" />
+                  <p className="text-sm font-semibold text-foreground/90 leading-relaxed">{hook}</p>
+                </div>
+              ))}
             </div>
           </div>
 
